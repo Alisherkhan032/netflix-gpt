@@ -24,7 +24,6 @@ const GptSearchBar = () => {
   };
 
   const handleGptSearchClick = async () => {
-    console.log(searchText.current.value);
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -35,7 +34,6 @@ const GptSearchBar = () => {
 
     const result = await model.generateContent(prompt);
 
-    console.log(result.response.text());
     const gptMovies = result?.response?.text().split(",");
 
     // Remove the newline character from the last element
@@ -43,16 +41,12 @@ const GptSearchBar = () => {
 
     //* ['Tumbbad', ' Pari', ' Stree', ' Bhoot: Part One - The Haunted Ship', 'Raaz']
 
-    console.log(gptMovies);
-
     // For each movie, look for it in TMDB Api
 
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
     // [promise , promise , promise , promise , promise]
 
     const tmdbResults = await Promise.all(promiseArray);
-
-    console.log(tmdbResults);
 
     dispatch(
       addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
