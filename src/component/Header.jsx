@@ -81,7 +81,7 @@ const Header = () => {
             onClick={handleGptSearchClick}
             className="px-4 -mt-1 bg-slate-500 text-white rounded-lg shadow-md shadow-slate-600"
           >
-            {!isGptSearch ? "GPT Search" : <i class="fi fi-sr-arrow-small-left "> <span>Go back</span> </i>}
+            {!isGptSearch ? "GPT Search" : <i className="fi fi-sr-arrow-small-left "> <span>Go back</span> </i>}
           </button>
           <img className="w-10  h-10 mx-4" src={userAvatar} alt="userIcon" />
 

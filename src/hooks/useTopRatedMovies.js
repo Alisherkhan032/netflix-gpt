@@ -8,10 +8,14 @@ const useTopRatedMovies = ()=>{
 
     const url = "https://api.themoviedb.org/3/movie/top_rated?page=1";
     const getTopRatedMovies = async () => {
-        const data = await fetch(url, API_OPTIONS);
-        const json = await data.json();
-        
-        dispatch(addTopRatedMovies(json.results))
+        try {
+            const data = await fetch(url, API_OPTIONS);
+            const json = await data.json();
+            
+            dispatch(addTopRatedMovies(json.results))
+        } catch (error) {
+            console.log(error)
+        }
     };
     useEffect(() => {
         getTopRatedMovies();

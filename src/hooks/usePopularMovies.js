@@ -8,10 +8,14 @@ const usePopularMovies = ()=>{
 
     const url = "https://api.themoviedb.org/3/movie/popular?page=1";
     const getPopularMovies = async () => {
-        const data = await fetch(url, API_OPTIONS);
-        const json = await data.json();
+        try {
+            const data = await fetch(url, API_OPTIONS);
+            const json = await data.json();
         
-        dispatch(addPopularMovies(json.results))
+            dispatch(addPopularMovies(json.results))
+        } catch (error) {
+                console.log(error)
+        }
     };
     useEffect(() => {
         getPopularMovies();
