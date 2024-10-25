@@ -104,21 +104,21 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div>
-        <img className="absolute " src={netflixBG} alt="" />
+      <div className="absolute">
+        <img className="w-screen h-screen object-cover  " src={netflixBG} alt="" />
       </div>
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="z-10 text-white absolute py-10 px-16 bg-black bg-opacity-80  w-[35%] h-max my-20 right-0 left-0 mx-auto rounded-md"
+        className="z-10 text-white absolute py-4 md:py-6 px-16 bg-black bg-opacity-80 w-[90%]  md:w-[35%] mt-20 md:my-16 right-0 left-0 mx-auto rounded-md"
       >
-        <h1 className="font-bold text-3xl py-4">
+        <h1 className="font-bold text-xl md:text-3xl py-4">
           {isSignIn ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignIn && (
           <input
             ref={name}
-            className="p-4 my-2 w-full bg-[rgba(0,0,0,0.5)] rounded-md border-white border-opacity-50 border"
+            className="p-4 md:my-2 w-full bg-[rgba(0,0,0,0.5)] rounded-md border-white border-opacity-50 border"
             type="text"
             placeholder="Full Name"
           />
@@ -132,7 +132,7 @@ const Login = () => {
         <div className="flex relative justify-start items-center w-full">
           <input
             ref={password}
-            className="p-4 my-2 w-full bg-[rgba(0,0,0,0.5)] rounded-md border-white border-opacity-50 border"
+            className="p-4 md:my-2 w-full bg-[rgba(0,0,0,0.5)] rounded-md border-white border-opacity-50 border"
             type={isVisible ? "password" : "text"}
             placeholder="password"
           />
@@ -145,7 +145,7 @@ const Login = () => {
           ></i>
         </div>
 
-        <p className="text-red-500 text-lg py-2"> {erorMessage} </p>
+        <p className="text-red-500 text-lg md:py-2"> {erorMessage} </p>
 
         <button
           onClick={handleFormSubmit}
@@ -156,7 +156,7 @@ const Login = () => {
 
         {isSignIn && <div className="text-center text-gray-300">OR</div>}
         {isSignIn && (
-          <button className="p-2 my-6 bg-[rgba(64,63,63,0.87)] w-full rounded-md font-semibold disabled">
+          <button className="p-2 my-4 md:my-6 bg-[rgba(64,63,63,0.87)] w-full rounded-md font-semibold disabled">
             Use a Sign-in code
           </button>
         )}

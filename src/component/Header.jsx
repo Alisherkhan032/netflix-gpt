@@ -61,8 +61,8 @@ const Header = () => {
   }
 
   return (
-    <div className="flex justify-between z-10 absolute w-full  px-8 py-2 bg-gradient-to-b from-[rgba(0,0,0,0.7)] ">
-      <img className="w-48" src={LOGO} alt="logo" />
+    <div className="flex flex-col justify-between items-center z-10 absolute w-full  px-8 py-2 bg-gradient-to-b from-[rgba(0,0,0,0.7)] md:flex-row">
+      <img className="w-48 mx-auto md:mx-0" src={LOGO} alt="logo" />
 
       {user && (
         <div className="flex p-4">
@@ -81,11 +81,12 @@ const Header = () => {
             onClick={handleGptSearchClick}
             className="px-4 -mt-1 bg-slate-500 text-white rounded-lg shadow-md shadow-slate-600"
           >
-            {!isGptSearch ? "GPT Search" : <i className="fi fi-sr-arrow-small-left "> <span>Go back</span> </i>}
+            {!isGptSearch ? "GPT Search" : <i className="fi fi-sr-arrow-left "></i>}
           </button>
+
           <img className="w-10  h-10 mx-4" src={userAvatar} alt="userIcon" />
 
-          <button className="font-bold text-white" onClick={handleSignOut}>
+          <button className="font-bold text-white " onClick={handleSignOut}>
             (Sign Out)
           </button>
         </div>

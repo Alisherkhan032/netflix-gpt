@@ -1,15 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import languages from "../utils/languageConstants";
 import { useSelector, useDispatch } from "react-redux";
 import { genAI } from "../utils/geminiAi";
 import { API_OPTIONS } from "../utils/constants";
 import { addGptMovieResult } from "../utils/gptSlice";
+import Spinner from "./Spinner";
 
 const GptSearchBar = () => {
   const langIdentifier = useSelector((store) => store.config.language);
   const langObj = languages[langIdentifier];
   const searchText = useRef(null);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   //* search movie in tmdb d/b
   const searchMovieTMDB = async (movie) => {
@@ -24,6 +26,8 @@ const GptSearchBar = () => {
   };
 
   const handleGptSearchClick = async () => {
+
+    setLoading(true);
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -51,13 +55,17 @@ const GptSearchBar = () => {
     dispatch(
       addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
     );
+
+    setLoading(false);
+    
   };
 
   return (
-    <div className="pt-[10%] flex justify-center ">
+    <>
+      <div className="pt-[10%] flex justify-center ">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className=" bg-black bg-opacity-70 rounded w-1/2 flex justify-center items-center px-4"
+        className="w-[95%] bg-black bg-opacity-70 rounded flex justify-center items-center px-4 md:w-1/2 "
       >
         <input
           type="text"
@@ -73,6 +81,10 @@ const GptSearchBar = () => {
         </button>
       </form>
     </div>
+    {loading && <div className="flex justify-center pt-5">
+      <Spinner />
+    </div>}
+    </>
   );
 };
 
