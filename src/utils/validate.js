@@ -7,7 +7,7 @@ export const checkValidData = (email,password)=>{
         return "Email is not valid";
     }
     if(!isPasswordValid){
-        return "Password is not valid";
+        return "Password: 6+ chars, 1 uppercase, 1 number, 1 special char";
     }
 
     return null;
