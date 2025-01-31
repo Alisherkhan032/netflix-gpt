@@ -24,7 +24,7 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
 
-  const hanldePasswordToggle = () => {
+  const handlePasswordToggle = () => {
     setIsVisble(!isVisible);
   };
 
@@ -137,7 +137,7 @@ const Login = () => {
             placeholder="password"
           />
           <i
-            onClick={hanldePasswordToggle}
+            onClick={handlePasswordToggle}
             className={
               `mx-2 absolute right-0 cursor-pointer fi fi-rr-eye` +
               (!isVisible ? "-crossed" : "")

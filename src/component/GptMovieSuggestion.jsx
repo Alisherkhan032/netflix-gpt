@@ -6,11 +6,6 @@ import Spinner from '../component/Spinner'
 const GptMovieSuggestion = () => {
   const {movieNames, movieResults} = useSelector((store) => store.gpt)
 
-  // if(!movieNames) return (
-  //   <div className="pos-center">
-  //     <Spinner />
-  //   </div>
-  // );
   if(!movieNames) return null
   console.log(movieResults)
   return (

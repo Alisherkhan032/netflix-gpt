@@ -10,7 +10,7 @@ const SecondaryContainer = () => {
       <MovieList title={"New on Netflix"} movies={movies["NowPlayingMovies"]} />
       <MovieList 
         title={"Popular Movies"} 
-        movies={Array.isArray(movies["PopularMovies"]) ? [...movies["PopularMovies"]].reverse() : []} 
+        movies={movies["PopularMovies"]} 
       />
       <MovieList title={"Top Rated Movies"} movies={movies["TopRatedMovies"]} />
       <MovieList 

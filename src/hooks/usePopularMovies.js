@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const usePopularMovies = ()=>{
     const dispatch = useDispatch();
 
-    const url = "https://api.themoviedb.org/3/movie/popular?page=1";
+    const url = "https://api.themoviedb.org/3/movie/popular?page=2";
     const getPopularMovies = async () => {
         try {
             const data = await fetch(url, API_OPTIONS);
