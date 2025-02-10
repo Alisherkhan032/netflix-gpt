@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
-import { toggleGptSearchView } from "../utils/gptSlice";
+import { toggleGptSearchView, resetGptSlice } from "../utils/gptSlice";
+import { resetMovieSlice } from "../utils/movieSlice";
 import { LOGO, userAvatar, SUPPORTED_LANGUAGES } from "../utils/constants";
 import {changeLanguage} from "../utils/configSlice"
 
@@ -15,9 +16,12 @@ const Header = () => {
 
   const navigate = useNavigate();
   function handleSignOut() {
+    dispatch(resetGptSlice());
+    dispatch(removeUser());
+    dispatch(resetMovieSlice());
+
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
       })
       .catch((error) => {
         // An error happened.

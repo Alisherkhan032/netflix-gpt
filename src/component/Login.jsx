@@ -17,6 +17,7 @@ const Login = () => {
   const [isSignIn, setisSignIn] = useState(true);
   const [isVisible, setIsVisble] = useState(true);
   const [erorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -43,6 +44,8 @@ const Login = () => {
       // only null means valid
       return;
     }
+
+    setLoading(true);
 
     if (!isSignIn) {
       //* sign up logic
@@ -74,6 +77,9 @@ const Login = () => {
               // An error occurred
               // ...
               setErrorMessage(error.message);
+            })
+            .finally(() => {
+              setLoading(false);
             });
           navigate("/browse");
         })
@@ -97,15 +103,23 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
+
   };
 
   return (
     <div>
       <Header />
       <div className="absolute">
-        <img className="w-screen h-screen object-cover  " src={netflixBG} alt="" />
+        <img
+          className="w-screen h-screen object-cover  "
+          src={netflixBG}
+          alt=""
+        />
       </div>
 
       <form
@@ -149,9 +163,13 @@ const Login = () => {
 
         <button
           onClick={handleFormSubmit}
-          className="p-2 my-6 bg-red-700 w-full rounded-md font-semibold hover:bg-red-800"
+          className={`p-2 my-6 bg-red-700 w-full rounded-md font-semibold hover:bg-red-800 ${
+            loading ? "cursor-not-allowed" : ""
+          }`}
+          disabled={loading}
         >
-          {isSignIn ? "Sign In" : "Sign Up"}
+          {/* {isSignIn ? "Sign In" : "Sign Up"} */}
+          {loading ? "Loading..." : isSignIn ? "Sign In" : "Sign Up"}
         </button>
 
         {isSignIn && <div className="text-center text-gray-300">OR</div>}
